@@ -1,3 +1,4 @@
+
 let inputData = {
   "dimensions": [{
     "id": "dimension_re",
@@ -38,41 +39,34 @@ let inputData = {
   }]
 }
 
-let expectdData = [{
-    "Region": "East",
-    "County": "London",
-    "Sales": 100,
-    "Quantity": 85,
-    "Profit": 123
-  }, {
-    "Region": "East",
-    "County": "Italy",
-    "Sales": 156,
-    "Quantity": 34,
-    "Profit": 45
-  }, {
-    "Region": "West",
-    "County": "Germany",
-    "Sales": 432,
-    "Quantity": 153,
-    "Profit": 421
-  }, {
-    "Region": "SouthWest",
-    "County": "US",
-    "Sales": 462,
-    "Quantity": 434,
-    "Profit": 465
-  }, {
-    "Region": "South",
-    "County": "Russia",
-    "Sales": 25,
-    "Quantity": 52,
-    "Profit": 451
-  },
-  {
-    "Region": "NorthEast",
-    "County": "India",
-    "Sales": 100,
-    "Quantity": 43,
-    "Profit": 56
-  }]
+const actualData = {};
+const dimensions = inputData.dimensions;
+const meta = inputData.metadata;
+const output = [];
+
+dimensions.map((item) => {
+	meta.map((metaItem) => {
+  	if (metaItem.id === item.id) {
+      item.values.map((val, index) => {
+        if (output[index] == undefined) {
+           output[index] = {};
+        }
+      	output[index][metaItem.label] =val;
+        expectdData=output
+      });
+    	 
+    }
+  });
+});
+
+
+const appDiv = document.createElement("div");
+
+appDiv.innerHTML = "<h4>Actual Data</h4>";
+appDiv.innerHTML += `<pre>${JSON.stringify(actualData,null,2)}</pre>`;
+appDiv.innerHTML += "<h4>Expexted Data</h4>";
+appDiv.innerHTML += `<pre>${JSON.stringify(expectdData,null,2)}</pre>`;
+document.body.onload = () => {
+ document.body.innerHTML = "";
+ document.body.appendChild(appDiv);
+}
