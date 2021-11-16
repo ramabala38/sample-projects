@@ -45,3 +45,12 @@ function closestToZero(numbers) {
     
     return closest;
 }
+5.
+find the largest number in array dynamically and return true if element in array is greater than 0 otherwise return 0 or null
+
+function largest(num)
+{
+}
+
+let num = [50,-2,-3,100,78]
+
